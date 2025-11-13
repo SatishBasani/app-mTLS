@@ -134,7 +134,7 @@ kubectl get pods -l app=hello -n app-mtls
 
 Run a temporary curl pod:
 ```bash
-kubectl run curl --image=curlimages/curl:8.7.1 -it --restart=Never -- /bin/sh
+kubectl -n app-mtls run curl --image=curlimages/curl:8.7.1 -it --restart=Never -- /bin/sh
 ```
 
 Inside the pod, paste the certs (`ca.crt`, `client.crt`, `client.key`) under `/tmp/`.
@@ -157,7 +157,7 @@ curl -sk --cacert /tmp/ca.crt   --cert /tmp/client.crt --key /tmp/client.key   h
 
 Port-forward the service:
 ```bash
-kubectl port-forward svc/hello 8443:8443
+kubectl -n app-mtls port-forward svc/hello 8443:8443
 ```
 
 Then, in another terminal:
@@ -170,7 +170,7 @@ curl -sk --cacert app/certs/ca.crt   --cert app/certs/client.crt --key app/certs
 ## 🧹 Cleanup
 
 ```bash
-kubectl delete all -l app=hello
+kubectl -n app-mtls delete all -l app=hello
 terraform destroy -auto-approve
 ```
 
