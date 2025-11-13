@@ -51,6 +51,7 @@ This repository provisions an **Amazon EKS cluster** using **Terraform** and dep
 ```bash
 cd eks
 terraform init
+terraform plan
 terraform apply -auto-approve
 ```
 
