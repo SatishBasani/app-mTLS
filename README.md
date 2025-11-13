@@ -39,7 +39,7 @@ This repository provisions an **Amazon EKS cluster** using **Terraform** and dep
 │
 ├── app/               # Kubernetes Hello mTLS World deployment
 │   ├── certs/         # OpenSSL scripts + generated certs
-│   └── mtls-hello.yaml
+│   └── hello-mtls.yaml
 │
 └── README.md
 ```
@@ -124,9 +124,7 @@ kubectl -n app-mtls create secret generic hello-ca   --from-file=ca.crt=ca.crt
 
 Apply the deployment manifest:
 ```bash
-kubectl apply -f app/configmap.yaml
-kubectl apply -f app/deploy.yaml
-kubectl apply -f app/svc.yaml
+kubectl apply -f app/hello-mtls.yaml
 kubectl get pods -l app=hello -n app-mtls
 ```
 
